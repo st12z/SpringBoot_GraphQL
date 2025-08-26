@@ -2,7 +2,7 @@ spring:
   application:
     name: springboot-graphql
   datasource:
-    url: jdbc:postgresql://localhost:5432/booking-hotel
+    url: jdbc:postgresql://localhost:5432/graphql-test
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -13,5 +13,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
 server:
   port: 8081
