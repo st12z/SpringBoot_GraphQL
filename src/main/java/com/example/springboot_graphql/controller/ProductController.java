@@ -1,5 +1,6 @@
 package com.example.springboot_graphql.controller;
 
+import com.example.springboot_graphql.dto.ProductDto;
 import com.example.springboot_graphql.entity.Product;
 import com.example.springboot_graphql.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +17,5 @@ import java.util.List;
 
 @Controller
 public class ProductController {
-    @Autowired
-    private ProductService propertyService;
-
-    @QueryMapping
-    public List<Product> getProducts() {
-        return propertyService.getAll();
-    }
-    @QueryMapping
-    public List<Product> getProductsByCategory(@Argument String category) {
-        return propertyService.getProductsByCategory(category);
-    }
-    @MutationMapping
-    public Product updateStock(@Argument int id, @Argument int stock){
-        return propertyService.updateStock(id,stock);
-    }
+    
 }

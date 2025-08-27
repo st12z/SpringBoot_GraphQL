@@ -1,5 +1,6 @@
 package com.example.springboot_graphql.service;
 
+import com.example.springboot_graphql.dto.ProductDto;
 import com.example.springboot_graphql.entity.Product;
 import com.example.springboot_graphql.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,20 +11,5 @@ import java.util.List;
 
 @Service
 public class ProductService {
-    @Autowired
-    private ProductRepository propertyRepository;
 
-    public List<Product> getAll() {
-        return propertyRepository.findAll();
-    }
-
-    public List<Product> getProductsByCategory(String category) {
-        return propertyRepository.findByCategory(category);
-    }
-
-    public Product updateStock(@Argument int id, @Argument int stock){
-        Product existProduct = propertyRepository.findById(id).orElseThrow(()-> new RuntimeException("Product with id not found"));
-        existProduct.setStock(stock);
-        return propertyRepository.save(existProduct);
-    }
 }

@@ -1,14 +1,57 @@
-type Product{
-    id: ID,
-    name:String,
-    category: String,
-    price: Float,
-    stock: Int
+interface People{
+    id: ID
+    name: String
+}
+type Employee implements People{
+    id:ID,
+    name: String
+    salary: Float
+}
+type Lawyer implements People{
+    id:ID
+    name: String
+    position: String
+}
+
+#pagination
+type AuthorEdge{
+    node: Author
+    cursor: String
+}
+type PageInfo {
+    endCursor: String
+    hasNextPage: Boolean!
+}
+
+type AuthorConnection{
+    totalCount: Int!
+    edges: [AuthorEdge]
+    pageInfo: PageInfo
+}
+type Book{
+    id: ID
+    name: String
+    pageCount: Int
+    authors(first: Int,after:String): AuthorConnection
+}
+type Author{
+    id: ID
+    name: String
+}
+#end
+type UserDto{
+    id: Int
+    username: String
+}
+input UserRequestDto{
+    username: String
+    password: String
 }
 type Query{
-    getProducts: [Product]
-    getProductsByCategory(category:String) : [Product]
+    books(first: Int): [Book]
+    bookById(id: Int): Book
+    getPeoples(typePeople: String): [People]
 }
 type Mutation{
-    updateStock(id:ID, stock: Int): Product
+    createUser(userRequestDto: UserRequestDto): UserDto
 }
